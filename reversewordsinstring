@@ -1,0 +1,17 @@
+class Solution{
+    public String RS(String s){
+        String[] s1 = s.split(" +");
+        StringBuilder sb = new StringBuilder();
+        for(int i=s1.length-1;i>=0;i--){
+            sb.append(s1[i]);
+            sb.append(" ");
+        }
+        return sb.toString().trim();
+    }
+    public static void main(String a[]){
+        Solution sol= new Solution();
+        String s = "the sky is blue";
+        String ans = sol.RS(s);
+        System.out.println("Answer is : " + ans);
+    }
+}
