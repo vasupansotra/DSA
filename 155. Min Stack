@@ -1,0 +1,88 @@
+class MinStack {
+    private int top;
+    private int[] stack;
+    private int[] minStack;
+
+    public MinStack() {
+         top = -1;
+        stack = new int[100000];
+        minStack = new int[100000];
+    }
+    
+    public void push(int value) {
+        if(top>=stack.length-1){
+            System.out.println("Stack is Full");
+        }
+        else
+        {
+            top = top+1;
+            stack[top] = value;
+
+            if (top == 0) {
+                minStack[top] = value;
+            } else {
+                minStack[top] = Math.min(value,minStack[top - 1]);
+            }
+        }
+    }
+    
+    public void pop() {
+        if(top==-1){
+            System.out.println("Stack is empty");
+        }
+        else{
+            top = top-1;
+        }
+    }
+    
+    public int top() {
+        if(top==-1){
+            System.out.println("Stack is Empty");
+            return -1;
+        }
+        return stack[top];
+    }
+    
+    public int getMin() {
+        if (top == -1) {
+            System.out.println("Stack is Empty");
+            return -1;
+        }
+
+
+-> optimized code 
+class MinStack {
+    Stack<Integer> s1 = new Stack<>();
+    Stack<Integer> s2 = new Stack<>();
+
+    public MinStack() {
+        
+    }
+    
+    public void push(int val) {
+        if(s2.isEmpty()){
+            s1.push(val);
+            s2.push(val);
+            return;
+        }
+        s1.push(val);
+        s2.push(Math.min(val,s2.peek()));
+    }
+    
+    public void pop() {
+        s1.pop();
+        s2.pop();
+    }
+    
+    public int top() {
+        return s1.peek();
+    }
+    
+    public int getMin() {
+        return s2.peek();
+    }
+}
+
+        return minStack[top];
+    }
+}
