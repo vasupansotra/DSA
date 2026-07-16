@@ -48,6 +48,9 @@ class MinStack {
             System.out.println("Stack is Empty");
             return -1;
         }
+        return minStack[top];
+    }
+}
 
 
 -> optimized code 
@@ -83,6 +86,3 @@ class MinStack {
     }
 }
 
-        return minStack[top];
-    }
-}
