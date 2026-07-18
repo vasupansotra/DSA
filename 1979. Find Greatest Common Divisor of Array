@@ -1,0 +1,18 @@
+class Solution {
+    public int findGCD(int[] nums) {
+        Arrays.sort(nums);
+        int s = nums[0];
+        int l = nums[nums.length-1];
+        while(s<l){
+            if(l%s==0) return s;
+            
+            l = l-s;
+            if(s>l){
+                int temp = s;
+                s = l;
+                l = temp;
+            }
+        }
+        return s;
+    }
+}
