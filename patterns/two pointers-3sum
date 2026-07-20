@@ -1,0 +1,63 @@
+import java.util.*;
+
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        
+        // Step 1: Array ko sort kiya
+        Arrays.sort(nums);
+        
+        for (int i = 0; i < nums.length - 2; i++) {
+            // Step 2: Pehle number ke duplicates ko skip kiya
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            
+            int left = i + 1;
+            int right = nums.length - 1;
+            
+            // Step 3: Two-pointer search shuru
+            while (left < right) {
+                int sum = nums[i] + nums[left] + nums[right];
+                
+                if (sum == 0) {
+                    // Sahi triplet mila, result me add kiya
+                    result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                    
+                    // Left pointer ke duplicates ko skip kiya
+                    while (left < right && nums[left] == nums[left + 1]) left++;
+                    // Right pointer ke duplicates ko skip kiya
+                    while (left < right && nums[right] == nums[right - 1]) right--;
+                    
+                    // Dono pointers ko agle naye number par bheja
+                    left++;
+                    right--;
+                } else if (sum < 0) {
+                    left++; // Sum chota hai, bada number chahiye
+                } else {
+                    right--; // Sum bada hai, chota number chahiye
+                }
+            }
+        }
+        
+        return result;
+    }
+
+    // ==========================================
+    // DRIVER CODE (Main Function)
+    // ==========================================
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+
+        // Test Case Input
+        int[] nums = {-1, 0, 1, 2, -1, -4};
+
+        System.out.println("Input Array: " + Arrays.toString(nums));
+
+        // Function call kiya aur result store kiya
+        List<List<Integer>> output = sol.threeSum(nums);
+
+        // Output print kiya
+        System.out.println("Output Triplets (Sum = 0): " + output);
+    }
+}
